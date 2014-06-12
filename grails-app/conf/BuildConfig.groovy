@@ -70,11 +70,31 @@ grails.project.dependency.resolution = {
         compile ":mysql-connectorj:5.1.22.1"
         compile ":spring-security-core:2.0-RC3"
         compile ":spring-security-rest:1.4.0.M2"
+        compile ":codenarc:0.21"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
         //compile ":less-asset-pipeline:1.7.0"
         //compile ":coffee-asset-pipeline:1.7.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
+    }
+}
+
+
+codenarc {
+    processTestUnit = false
+    processTestIntegration = false
+    processServices = false
+    processControllers = false
+    processDomain = false
+    reports = {
+        MyXmlReport('xml') {                    // The report name "MyXmlReport" is user-defined; Report type is 'xml'
+            outputFile = 'target/CodeNarc-Report.xml'  // Set the 'outputFile' property of the (XML) Report
+            title = 'Sample Report'             // Set the 'title' property of the (XML) Report
+        }
+        MyHtmlReport('html') {                  // Report type is 'html'
+            outputFile = 'target/CodeNarc-Report.html'
+            title = 'Scrum Server Report'
+        }
     }
 }
