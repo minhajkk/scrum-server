@@ -24,10 +24,11 @@ class Project {
     String  description
     User    createdBy
 
-    static hasMany = [tasks: Task]
+    static hasMany = [tasks:Task]
 
     static constraints = {
-        name blank:false
-        description blank:false
+        name blank: false, nullable: false
+        description blank: false, nullable: false
+        createdBy nullable: false
     }
 }

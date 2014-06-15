@@ -5,20 +5,21 @@ import com.scrum.auth.User
 class MyRegisterController {
 
     def index() {
+        render view: '/auth/register'
     }
 
-    def creatingUser(){
-        User user = new User();
+    def save(){
+        User userInstance = new User(params);
+        userInstance.validate()
+        if (userInstance.hasErrors()) {
+            render view:'/auth/register', model: [userInstance: userInstance]
+            return
+        }
 
-        user.username = "minhaj"
-        user.password = "minhaj123#"
-        //user.email = "myemail@dontexist.com"
-        user.accountExpired = false
-        println("User: ${user}");
-        user.save();
+        userInstance.save flush:true
 
-        println("saved...");
-        println("this is printed");
-        render (text: "test")
+        flash.message = "Well done! You are successfully registered!!"
+
+        redirect(controller: "auth", action: "login")
     }
 }

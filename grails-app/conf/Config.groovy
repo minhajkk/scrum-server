@@ -114,7 +114,7 @@ log4j.main = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
-    debug 'org.springframework.security'
+    //debug 'org.springframework.security'
 }
 
 
@@ -123,47 +123,23 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.scrum.auth.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.scrum.auth.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.scrum.auth.Role'
-
-//grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
-//grails.plugin.springsecurity.interceptUrlMap = [
-//        '/':                    ['permitAll'],
-//        '/assets/**':           ['permitAll'],
-//        '/admin/':              ['permitAll'],
-//        //'/v1/api/**':           ['isFullyAuthenticated()'],
-//        //'/v1/api/auth/**':       ['permitAll'],
-//        '/**':                  ['permitAll']
-//]
-//
-//
-//grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-//        '/':                              ['permitAll'],
-//        '/index':                         ['permitAll'],
-//        '/index.gsp':                     ['permitAll'],
-//        '/**/js/**':                      ['permitAll'],
-//        '/**/css/**':                     ['permitAll'],
-//        '/**/images/**':                  ['permitAll'],
-//        '/**/favicon.ico':                ['permitAll'],
-//        //'/v1/api/**':                     ['isFullyAuthenticated()'],
-//        //'/v1/api/auth/**':                ['permitAll'],
-//        '/**':                            ['permitAll']
-//]
+//grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.interceptUrlMap = [
-        '/':                    ['permitAll'],
-        '/assets/**':           ['permitAll'],
+        '/':                              ['permitAll'],
+        '/assets/**':                     ['permitAll'],
         '/**/js/**':                      ['permitAll'],
         '/**/css/**':                     ['permitAll'],
         '/**/images/**':                  ['permitAll'],
         '/**/favicon.ico':                ['permitAll'],
-        '/v1/api/**':                     ['isFullyAuthenticated()'],
-        '/v1/api/auth/login':   ['permitAll'],
-        '/v1/api/auth/logout':  ['permitAll'],
-        '/**':                  ['permitAll']
+        '/v1/api/projects/**':            ['isFullyAuthenticated()'],
+        '/v1/api/tasks/**':               ['isFullyAuthenticated()'],
+        '/**':                            ['permitAll']
 ]
 
-
+//
 //grails.plugin.springsecurity.filterChain.chainMap = [
-//        '/api/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',  // Stateless chain
+//        '/v1/api/comments/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',  // Stateless chain
 //        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'                                          // Traditional chain
 //]
 
@@ -176,6 +152,6 @@ grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName='com.s
 //grails.plugin.springsecurity.rest.token.rendering.tokenPropertyName='token'
 //grails.plugin.springsecurity.rest.login.useJsonCredentials=true
 
-
-
-codenarc.processDomain="false"
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.auth.loginFormUrl = "/auth/login"
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = "/auth/login"

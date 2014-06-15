@@ -2,7 +2,6 @@ package com.scrum
 
 import com.scrum.auth.User
 
-
 /**
  *
  */
@@ -20,7 +19,7 @@ class Comment {
     Date    lastUpdated
 
     static constraints = {
-        description blank: false
-        user blank: false
+        description blank:false
+        user blank:false
     }
 }

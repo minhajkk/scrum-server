@@ -53,4 +53,12 @@ environments {
             }
         }
     }
+
+
+    test {
+        dataSource {
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost/pm_test?useUnicode=yes&characterEncoding=UTF-8"
+        }
+    }
 }

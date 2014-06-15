@@ -8,7 +8,16 @@ package com.scrum
  * To change this template use File | Settings | File Templates.
  */
 class ScrumUtil {
+    public static EXCLUDE_FIELD_LIST = ['class', 'createdBy', 'tasks', 'dateCreated', 'lastUpdated'];
 
-    public static EXCLUDE_FIELD_LIST = ['class','createdBy','tasks', 'dateCreated', 'lastUpdated'];
-    //private getIncludeFields() { params.fields?.tokenize(',') }
+    public String getStr() {
+        String ret = "";
+
+        if (ret == null) ret = "teafdadf"
+
+        def var1 = [1, null, Boolean.FALSE, 'x', true]
+        def var2 = [1, null, Boolean.FALSE, 'x', true]        // violation
+
+        return ret;
+    }
 }

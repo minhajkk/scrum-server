@@ -52,6 +52,7 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 
         compile "org.springframework:spring-orm:$springVersion"
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
 
     plugins {
@@ -69,8 +70,13 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
         compile ":mysql-connectorj:5.1.22.1"
         compile ":spring-security-core:2.0-RC3"
-        compile ":spring-security-rest:1.4.0.M2"
+//        compile ":spring-security-rest:1.4.0.M2"
         compile ":codenarc:0.21"
+
+        test ":spock:0.7"
+        runtime ':twitter-bootstrap:3.1.1.3'
+
+        //compile ":build-test-data:2.1.2"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
@@ -88,13 +94,11 @@ codenarc {
     processControllers = false
     processDomain = false
     reports = {
-        MyXmlReport('xml') {                    // The report name "MyXmlReport" is user-defined; Report type is 'xml'
-            outputFile = 'target/CodeNarc-Report.xml'  // Set the 'outputFile' property of the (XML) Report
-            title = 'Sample Report'             // Set the 'title' property of the (XML) Report
-        }
         MyHtmlReport('html') {                  // Report type is 'html'
             outputFile = 'target/CodeNarc-Report.html'
             title = 'Scrum Server Report'
         }
     }
+
+    ruleSetFiles = ["rulesets/formatting.xml"]
 }
